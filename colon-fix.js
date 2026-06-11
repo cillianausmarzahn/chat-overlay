@@ -1,14 +1,15 @@
 (function () {
-  // Open Sans inkl. Extrabold/Black-Schnitt nachladen (CSP-konform via Link-Element)
+  // Open Sans inkl. Extrabold-Schnitt nachladen
   var f = document.createElement('link');
   f.rel = 'stylesheet';
   f.href = 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap';
   document.head.appendChild(f);
 
   var css = `
+    html body { background: transparent !important; background-color: transparent !important; overflow: hidden !important; margin: 0 !important; }
     html body .highlight-chat { background: transparent !important; box-shadow: none !important; border: none !important; padding: 1px 4px !important; margin: 0 !important; }
     html body .highlight-chat .hl-message { background: transparent !important; box-shadow: none !important; display: flex !important; flex-wrap: wrap !important; align-items: center !important; font-family: 'Open Sans', sans-serif !important; font-size: 14px !important; }
-    html body .highlight-chat .hl-message .hl-badges { margin-right: 2px !important; }
+    html body .highlight-chat .hl-message .hl-badges { margin-right: 2px !important; background: transparent !important; }
     html body .highlight-chat .hl-message .hl-badges img { height: 15px !important; max-height: 15px !important; min-height: 0 !important; width: auto !important; vertical-align: middle !important; margin-right: 1px !important; }
     html body .highlight-chat .hl-message .hl-name { font-family: 'Open Sans', sans-serif !important; font-size: 14px !important; font-weight: 800 !important; background: transparent !important; padding: 0 !important; margin-left: 0 !important; margin-right: 4px !important; -webkit-text-stroke: 0.4px currentColor !important; text-shadow: 1px 1px 2px rgba(0,0,0,.95), -1px -1px 2px rgba(0,0,0,.95) !important; }
     html body .highlight-chat .hl-message .hl-name span { font-size: 14px !important; font-weight: 800 !important; -webkit-text-stroke: 0.4px currentColor !important; }

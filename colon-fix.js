@@ -1,20 +1,24 @@
 (function () {
-  // 1) CSS per JS einspritzen (CSP-konform, da aus erlaubtem Script)
+  // Open Sans inkl. Extrabold/Black-Schnitt nachladen (CSP-konform via Link-Element)
+  var f = document.createElement('link');
+  f.rel = 'stylesheet';
+  f.href = 'https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700;800&display=swap';
+  document.head.appendChild(f);
+
   var css = `
-    body { background: transparent !important; overflow: hidden; margin: 0; }
-    .highlight-chat { background: transparent !important; box-shadow: none !important; border: none !important; padding: 1px 4px !important; margin: 0 !important; }
-    .highlight-chat .hl-message { background: transparent !important; box-shadow: none !important; display: flex !important; flex-wrap: wrap !important; align-items: center !important; font-family: 'Open Sans', sans-serif !important; }
-    .highlight-chat .hl-message .hl-badges { margin-right: 2px !important; }
-    .highlight-chat .hl-message .hl-badges img { height: 15px !important; max-height: 15px !important; width: auto !important; vertical-align: middle !important; margin-right: 1px !important; }
-    .highlight-chat .hl-message .hl-name { font-family: 'Open Sans', sans-serif !important; font-size: 14px !important; font-weight: 800 !important; background: transparent !important; padding: 0 !important; margin-left: 0 !important; margin-right: 4px !important; text-shadow: 1px 1px 2px rgba(0,0,0,.9), -1px -1px 2px rgba(0,0,0,.9) !important; }
-    .highlight-chat .hl-message .hl-content { color: #fff !important; -webkit-text-fill-color: #fff !important; font-family: 'Open Sans', sans-serif !important; font-size: 14px !important; font-weight: 800 !important; text-shadow: 1px 1px 2px rgba(0,0,0,.9), -1px -1px 2px rgba(0,0,0,.9) !important; }
-    .highlight-chat .hl-message .hl-content img { height: 26px !important; width: auto !important; vertical-align: middle !important; }
+    html body .highlight-chat { background: transparent !important; box-shadow: none !important; border: none !important; padding: 1px 4px !important; margin: 0 !important; }
+    html body .highlight-chat .hl-message { background: transparent !important; box-shadow: none !important; display: flex !important; flex-wrap: wrap !important; align-items: center !important; font-family: 'Open Sans', sans-serif !important; font-size: 14px !important; }
+    html body .highlight-chat .hl-message .hl-badges { margin-right: 2px !important; }
+    html body .highlight-chat .hl-message .hl-badges img { height: 15px !important; max-height: 15px !important; min-height: 0 !important; width: auto !important; vertical-align: middle !important; margin-right: 1px !important; }
+    html body .highlight-chat .hl-message .hl-name { font-family: 'Open Sans', sans-serif !important; font-size: 14px !important; font-weight: 800 !important; background: transparent !important; padding: 0 !important; margin-left: 0 !important; margin-right: 4px !important; -webkit-text-stroke: 0.4px currentColor !important; text-shadow: 1px 1px 2px rgba(0,0,0,.95), -1px -1px 2px rgba(0,0,0,.95) !important; }
+    html body .highlight-chat .hl-message .hl-name span { font-size: 14px !important; font-weight: 800 !important; -webkit-text-stroke: 0.4px currentColor !important; }
+    html body .highlight-chat .hl-message .hl-content { color: #fff !important; -webkit-text-fill-color: #fff !important; font-family: 'Open Sans', sans-serif !important; font-size: 14px !important; font-weight: 800 !important; -webkit-text-stroke: 0.4px #fff !important; text-shadow: 1px 1px 2px rgba(0,0,0,.95), -1px -1px 2px rgba(0,0,0,.95) !important; }
+    html body .highlight-chat .hl-message .hl-content img { height: 26px !important; width: auto !important; vertical-align: middle !important; }
   `;
   var style = document.createElement('style');
   style.textContent = css;
   document.head.appendChild(style);
 
-  // 2) Doppelpunkt weiß
   function fixColons() {
     document.querySelectorAll('.hl-name').forEach(function (el) {
       if (el.dataset.cf === '1') return;
